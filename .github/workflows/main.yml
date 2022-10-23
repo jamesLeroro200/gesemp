@@ -14,8 +14,8 @@ jobs:
       - name: Connexion a dockerhub
         uses: docker/login-action@v1
         with: 
-          username: ${{ secret.DOCKER_HUB_USERNAME }}
-          password: ${{ secret.DOCKER_HUB_PASSWORD }}
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
       
       - name: configuration environnement de build docker
         id: buildx
@@ -28,7 +28,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: ${{ secret.DOCKER_HUB_USERNAME }}/gesemp:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/gesemp:latest
       
       - name: digest image
         run: echo ${{ steps.docker_build.outputs.digest }}
