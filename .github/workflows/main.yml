@@ -23,7 +23,7 @@ jobs:
         
       - name: execution du build docker et push sur dockerhub
         id: docker_build
-        uses: docker/buildx-action@v1
+        uses: docker/build-push-action@v1
         with: 
           context: ./
           file: ./Dockerfile
