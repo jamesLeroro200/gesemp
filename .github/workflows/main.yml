@@ -29,7 +29,7 @@ jobs:
           target: dev
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/gesemp-dev:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/gesemp_dev:latest
       
       - name: digest image
         run: echo ${{ steps.docker_build.outputs.digest }}
