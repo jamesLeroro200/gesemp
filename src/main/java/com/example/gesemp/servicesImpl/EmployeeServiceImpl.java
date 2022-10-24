@@ -98,7 +98,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .map(employee -> {
                     employee.getRoles().remove(role);
                     return "L'employé "+employeeName+" n'est plus "+appRoleName ;
-                }).orElseThrow(()->new RuntimeException("Cet employé n'existte pas"));
+                }).orElseThrow(()->new RuntimeException("Cet employé n'existte pas !"));
     }
 
     @Override
