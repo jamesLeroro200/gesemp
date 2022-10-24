@@ -20,8 +20,9 @@ jobs:
       - name: Build et publication sur dockerhub
         id: docker_build
         run: |
-              docker-compose push backend
               docker-compose -f docker-compose.dev.yml build
+              docker tag gesemp_backend ${{ secrets.DOCKER_HUB_USERNAME }}/gesemp_backend
+              docker push ${{ secrets.DOCKER_HUB_USERNAME }}/gesemp_backend
      
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
