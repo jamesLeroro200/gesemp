@@ -23,11 +23,9 @@ jobs:
         
       - name: Execution du build docker et push sur dockerhub
         id: docker_build
+        run:  |
+          docker-compose -f docker-compose.dev.yml up
+         
+      - name: Push sur dockerhub
         run: |
-         docker-compose -f docker-compose.dev.yml up --build
          docker-compose push
-        
-      
-      - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
-      
