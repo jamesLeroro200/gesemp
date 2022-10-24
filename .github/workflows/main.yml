@@ -26,8 +26,7 @@ jobs:
         uses: docker/build-push-action@v1
         with: 
           context: ./
-          target: dev
-          file: ./Dockerfile
+          file: ./docker-compose.dev.yml
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/gesemp:latest
       
