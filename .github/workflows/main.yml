@@ -25,7 +25,7 @@ jobs:
         id: docker_build
         uses: pennsignals/publish_docker-compose@v0.1.0
         with:
-          docker-compose: 'docker-compose.dev.yml'
+          docker_compose: 'docker-compose.dev.yml'
      
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
