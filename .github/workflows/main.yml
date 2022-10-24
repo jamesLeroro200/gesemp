@@ -23,12 +23,10 @@ jobs:
         
       - name: Execution du build docker et push sur dockerhub
         id: docker_build
-        uses: docker/build-push-action@v1
-        with: 
-          context: ./
-          file: ./docker-compose.dev.yml
-          push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/gesemp:latest
+        run: |
+         docker-compose -f docker-compose.dev.yml up --build
+         docker-compose push
+        
       
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
