@@ -23,10 +23,13 @@ jobs:
         
       - name: Execution du build et push sur dockerhub
         id: docker_build
-        uses: pennsignals/publish_docker-compose@v0.1.0
+        uses: mr-smithers-excellent/docker-build-push@v3
         with:
-          docker_compose: 'docker-compose.dev.yml'
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          image: ${{ secrets.DOCKER_HUB_USERNAME }}/gesemp:latest
+          registry: docker.io
+          dockerfile: Dockerfile
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
      
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
