@@ -8,5 +8,3 @@ COPY src ./src
 
 FROM base as dev
 CMD ["./mvnw", "spring-boot:run", "-Dspring-boot.run.profiles=mysql"]
-
-
