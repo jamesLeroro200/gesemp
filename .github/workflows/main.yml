@@ -22,10 +22,9 @@ jobs:
         uses: docker/build-push-action@v1
         with: 
           context: ./
-          target: dev
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/gesemp_backend:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/gesemp_backend
      
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
