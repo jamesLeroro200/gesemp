@@ -11,16 +11,17 @@ jobs:
       - name: Verification accès au repo github
         uses: actions/checkout@v2
       
-      - run: |
-              docker-compose -f docker-compose.dev.yml push --build
-      
-      - name: Dockerization
-        if: success()
-        uses: manusa/actions-publish-docker@v1.1.2
+      - name: Connexion a dockerhub
+        uses: docker/login-action@v1
         with:
-          name: ${{ secrets.DOCKER_HUB_USERNAME }}/gesemp:latest
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+          
+      - name: Build et publication sur dockerhub
+        id: docker_build
+        run: |
+              docker-compose push backend
+              docker-compose -f docker-compose.dev.yml build
      
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
